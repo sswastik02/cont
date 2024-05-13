@@ -35,7 +35,7 @@ create_base_docker_image() {
 
 suggest_shortcut() {
   echo -e "You might want to add these lines to bashrc or zshrc and use \"cont\" instead:"
-  echo -e "\nalias cont=\"bash <(wget -qO- https://raw.githubusercontent.com/sswastik02/cont/main/cont.sh)\"\n"
+  echo -e "\nalias cont=\"CONT_DISABLE_SUGGEST=TRUE bash <(wget -qO- $SCRIPT_URL)\"\n"
   echo -e "To disable this suggestion set the environment variable CONT_DISABLE_SUGGEST"
 }
 
