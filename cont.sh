@@ -25,7 +25,7 @@ create_base_docker_image() {
   if [ -z $base_docker_image_id ]; then 
     echo -e "Base image not found. Creating \"$BASE_IMAGE_NAME\" base image..."
     docker pull $CONT_OS # Pull base image dependency
-    docker run -it --name cont_base $CONT_OS /bin/bash -c "apt-get update && apt-get install -y build-essential" # update and create the base image
+    docker run -it --name cont_base $CONT_OS /bin/bash -c "apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential software-properties-common" # update and create the base image
     docker commit cont_base $BASE_IMAGE_NAME 
   else
     echo -e "Base image \"$BASE_IMAGE_NAME\" already present"
