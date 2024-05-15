@@ -45,9 +45,9 @@ run_cont() {
   img_id=$(docker images -q $img) # Get img id to check if image exists
   if [ -z $img_id ]; then
     echo -e "$img not present. Creating..."
-    docker run -it --name $img-cont $BASE_IMAGE_NAME /bin/bash # Create from base image as image does not exist
+    docker run -it --name $img-cont -v $PWD:/mnt $BASE_IMAGE_NAME /bin/bash # Create from base image as image does not exist
   else
-    docker run -it --name $img-cont $img /bin/bash # Create from previous image
+    docker run -it --name $img-cont -v $PWD:/mnt $img /bin/bash # Create from previous image
   fi
   docker commit $img-cont $img # commit current state into image
   docker rm $img-cont # remove exited container
